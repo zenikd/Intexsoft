@@ -13,7 +13,7 @@ public class FinderBook {
 			}
 		}
 		
-		throw new NullPointerException("Book with this id isn't found");
+		throw new NullPointerException("Book with this id not found");
 	}
 
 }
