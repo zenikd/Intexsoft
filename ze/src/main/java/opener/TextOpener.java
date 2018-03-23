@@ -1,4 +1,4 @@
-﻿package opener;
+package opener;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import entity.Book;
 import entity.Lib;
 import update.TextUpdater;
 
-public class TextOpener implements IOpener  {
+public class TextOpener implements IOpener {
 	Lib lib;
 
 	public TextOpener(Lib lib) {
@@ -21,10 +21,10 @@ public class TextOpener implements IOpener  {
 		List<String> directories = lib.getDirectories();
 
 		FileInputStream fileInputStream;
-		
+
 		for (String directory : directories) {
 			Properties prop = new Properties();
-			
+
 			fileInputStream = new FileInputStream(directory);
 			prop.load(fileInputStream);
 
@@ -42,6 +42,5 @@ public class TextOpener implements IOpener  {
 
 		}
 
-	
 	}
 }

@@ -35,7 +35,7 @@ public class CsvUpdater implements IUpdater {
 
 		String[] lastString = records.get(Integer.parseInt(book.getNumberString()));
 		//подменяю, потому что не могу сделать remove, при remove в файле собется позици всех строк, а они у нас фиксированы для каждой книги
-		lastString = bookParam;
+		records.set(Integer.parseInt(book.getNumberString()), bookParam);
 
 		StringBuilder builder = new StringBuilder();
 
