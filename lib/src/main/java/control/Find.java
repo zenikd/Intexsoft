@@ -20,8 +20,8 @@ public class Find implements IExecutor {
 	public void execute(String command) {
 		setParams(command);
 
-		Pattern searchAuthor = Pattern.compile(author + "+");
-		Pattern serachNameBook = Pattern.compile(nameBook + "+");
+		Pattern searchAuthor = Pattern.compile(author);
+		Pattern serachNameBook = Pattern.compile(nameBook);
 
 		List<Book> findBook = new ArrayList();
 
@@ -40,13 +40,13 @@ public class Find implements IExecutor {
 	private void setParams(String command) {
 		Scanner in = new Scanner(System.in);
 
-		Pattern p1 = Pattern.compile("FIND \\[author=<[^>]+>\\]");
+		Pattern p1 = Pattern.compile("FIND \\[author=<[^>]*>\\]");
 		Matcher m1 = p1.matcher(command);
 
 		m1.find();
 		author = command.substring(14, m1.end() - 2);
 
-		Pattern p2 = Pattern.compile("\\[name=<[^>]+>\\]");
+		Pattern p2 = Pattern.compile("\\[name=<[^>]*>\\]");
 		Matcher m2 = p2.matcher(command);
 
 		m2.find();

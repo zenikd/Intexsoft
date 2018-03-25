@@ -13,7 +13,7 @@ public class UserPan {
 	Map<Pattern, IExecutor> mapCommand = new HashMap();
 
 	public UserPan(List<Book> books) {
-		Pattern p1 = Pattern.compile("FIND \\[author=<[^>]+>\\] \\[name=<[^>]+>\\]");
+		Pattern p1 = Pattern.compile("FIND \\[author=<[^>]*>\\] \\[name=<[^>]*>\\]");
 		mapCommand.put(p1, new Find(books));
 
 		Pattern p2 = Pattern.compile("ORDER id=<[^>]+> abonent=<[^>]+>");
