@@ -1,16 +1,12 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import control.Find;
-import control.IExecutor;
-import control.UserPan;
-import entity.Book;
-import entity.Lib;
-import opener.CsvOpener;
-import opener.TextOpener;
+import dao.entity.Book;
+import dao.entity.Lib;
+import dao.impl.CsvGeterBooks;
+import dao.impl.TextGeterBooks;
+import ui.impl.UserPan;
 
 public class CentralLibrary {
 	List<Lib> libraries = new ArrayList();
@@ -19,7 +15,7 @@ public class CentralLibrary {
 	public CentralLibrary() {
 
 		Lib lib = new Lib();
-		lib.setOpener(new CsvOpener(lib));
+		lib.setGeterBooks(new CsvGeterBooks());
 		List<String> directories = new ArrayList();
 		directories.add("D:\\Central_Library\\lib1\\text.csv");
 		lib.setDirectories(directories);
@@ -27,7 +23,7 @@ public class CentralLibrary {
 		libraries.add(lib);
 
 		Lib lib2 = new Lib();
-		lib2.setOpener(new TextOpener(lib2));
+		lib2.setGeterBooks(new TextGeterBooks());
 		List<String> directories2 = new ArrayList();
 		directories2.add("D:\\Central_Library\\lib2\\book1.properties");
 		directories2.add("D:\\Central_Library\\lib2\\book2.properties");
@@ -39,21 +35,9 @@ public class CentralLibrary {
 
 	public void connect() {
 
-		books = setAllBook(books);
-		UserPan userPan = new UserPan(books);
-		userPan.start();
+		UserPan userPan = new UserPan();
+		userPan.start(libraries);
 
 	}
 
-	public List<Book> setAllBook(List<Book> books) {
-
-		for (Lib lib : libraries) {
-			try {
-				lib.open(books);
-			} catch (IOException e) {				
-				e.printStackTrace();
-			}
-		}
-		return books;
-	}
 }

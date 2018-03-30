@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>zen</groupId>
-  <artifactId>ze</artifactId>
+  <groupId>lib_v2</groupId>
+  <artifactId>lib_v2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>ze</name>
+  <name>lib_v2</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -26,6 +26,5 @@
     <artifactId>opencsv</artifactId>
     <version>3.8</version>
 </dependency>
-    
   </dependencies>
 </project>
