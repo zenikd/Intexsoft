@@ -3,18 +3,18 @@ package ui.impl;
 import java.io.IOException;
 import java.util.List;
 
-import dao.entity.Lib;
+import service.impl.AbstarctLiBService;
 import service.impl.Order;
 import service.results.OrderResult;
 import ui.api.IShower;
 
 public class ShowerResultOrder implements IShower {
 
-	public void show(List<Lib> libs, String command) {
+	public void show(List<AbstarctLiBService> libServices, String command) {
 		Order order = new Order();
 		OrderResult orderResult;
 		try {
-			orderResult = order.execute(libs, command);
+			orderResult = order.execute(libServices, command);
 			showResult(orderResult);
 		} catch (IOException e) {			
 			e.printStackTrace();

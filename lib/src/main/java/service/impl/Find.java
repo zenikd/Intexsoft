@@ -11,14 +11,13 @@ import dao.entity.Lib;
 public class Find {
 	private String author;
 	private String nameBook;
-	private List<Book> books;
 
-	public List<Book> execute(List<Lib> libs, String command) {
+	public List<Book> execute(List<AbstarctLiBService> libServices, String command) {
 		setParams(command);
 
 		GeterBooksByParams geterBooksByParams = new GeterBooksByParams();
 
-		List<Book> foundBooks = geterBooksByParams.find(libs, new ChekerBooksParams() {
+		List<Book> foundBooks = geterBooksByParams.find(libServices, new ChekerBooksParams() {
 
 			@Override
 			public void check(List<Book> findBooks, List<Book> notChekedBooks) {

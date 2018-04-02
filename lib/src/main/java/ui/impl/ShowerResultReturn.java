@@ -3,19 +3,18 @@ package ui.impl;
 import java.io.IOException;
 import java.util.List;
 
-import dao.entity.Lib;
+import service.impl.AbstarctLiBService;
 import service.impl.Return;
-import service.results.OrderResult;
 import service.results.ReturnResult;
 import ui.api.IShower;
 
 public class ShowerResultReturn implements IShower {
 
-	public void show(List<Lib> libs, String command) {
+	public void show(List<AbstarctLiBService> libServices, String command) {
 		Return ret = new Return();
 		ReturnResult returnResult;
 		try {
-			returnResult = ret.execute(libs, command);
+			returnResult = ret.execute(libServices, command);
 			showResult(returnResult);
 		} catch (IOException e) {			
 			e.printStackTrace();

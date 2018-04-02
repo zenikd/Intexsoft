@@ -4,14 +4,15 @@ import java.util.List;
 
 import dao.entity.Book;
 import dao.entity.Lib;
+import service.impl.AbstarctLiBService;
 import service.impl.Find;
 import ui.api.IShower;
 
 public class ShowerResultFind implements IShower {
 
-	public void show(List<Lib> libs, String command) {
+	public void show(List<AbstarctLiBService> libServices, String command) {
 		Find find = new Find();
-		List<Book> foundBooks = find.execute(libs, command);
+		List<Book> foundBooks = find.execute(libServices, command);
 		showResult(foundBooks);
 	}
 

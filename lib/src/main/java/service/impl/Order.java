@@ -17,12 +17,12 @@ public class Order {
 	private String issuedto;
 	private List<Book> books;
 
-	public OrderResult execute(List<Lib> libs, String command) throws IOException  {
+	public OrderResult execute(List<AbstarctLiBService> libServices, String command) throws IOException  {
 		setParams(command);
 
 		GeterBooksByParams geterBooksByParams = new GeterBooksByParams();
 
-		List<Book> foundBooks = geterBooksByParams.find(libs, new ChekerBooksParams() {
+		List<Book> foundBooks = geterBooksByParams.find(libServices, new ChekerBooksParams() {
 
 			@Override
 			public void check(List<Book> findBooks, List<Book> notChekedBooks) {

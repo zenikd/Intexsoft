@@ -14,14 +14,14 @@ public class Return {
 	private List<Book> books;
 	private String id;
 
-	public ReturnResult execute(List<Lib> libs, String command) throws IOException {
+	public ReturnResult execute(List<AbstarctLiBService> libServices, String command) throws IOException {
 		setParams(command);
 
 		Book foundBook;
 
 		GeterBooksByParams geterBooksByParams = new GeterBooksByParams();
 
-		List<Book> foundBooks = geterBooksByParams.find(libs, new ChekerBooksParams() {
+		List<Book> foundBooks = geterBooksByParams.find(libServices, new ChekerBooksParams() {
 
 			@Override
 			public void check(List<Book> findBooks, List<Book> notChekedBooks) {

@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dao.entity.Lib;
+import service.impl.AbstarctLiBService;
 import ui.api.IShower;
 
 public class UserPan {
@@ -24,7 +25,7 @@ public class UserPan {
 		mapCommand.put(p3, new ShowerResultReturn());
 	}
 
-	public void start(List<Lib> libs) {
+	public void start(List<AbstarctLiBService> libServices) {
 		Scanner in = new Scanner(System.in);
 
 		outer: while (true) {
@@ -41,7 +42,7 @@ public class UserPan {
 
 				if (m.lookingAt()) {
 					IShower shower = entry.getValue();
-					shower.show(libs, command);
+					shower.show(libServices, command);
 					continue outer;
 				}
 
