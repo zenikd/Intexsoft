@@ -26,7 +26,7 @@ public class UserPan {
 
 	public void start(List<Lib> libs) {
 		Scanner in = new Scanner(System.in);
-		
+
 		outer: while (true) {
 
 			String command = in.nextLine();
@@ -34,13 +34,13 @@ public class UserPan {
 			if (command.equals("EXIT"))
 				return;
 
-			for (Map.Entry entry : mapCommand.entrySet()) {
+			for (Map.Entry<Pattern, IShower> entry : mapCommand.entrySet()) {
 
-				Pattern p = (Pattern) entry.getKey();
+				Pattern p = entry.getKey();
 				Matcher m = p.matcher(command);
 
 				if (m.lookingAt()) {
-					IShower shower = (IShower) entry.getValue();
+					IShower shower = entry.getValue();
 					shower.show(libs, command);
 					continue outer;
 				}
