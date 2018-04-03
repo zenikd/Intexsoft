@@ -32,3 +32,14 @@ lib/.settings/org.eclipse.jdt.core.prefs
 lib/.settings/org.eclipse.core.resources.prefs
 lib/.project
 lib/.classpath
+lib/target/classes/ui/impl/ReturnCommand.class
+lib/target/classes/ui/impl/OrderCommand.class
+lib/target/classes/ui/impl/FindCommand.class
+lib/target/classes/ui/api/ICommandExecutor.class
+lib/target/classes/service/impl/TextLibService.class
+lib/target/classes/service/impl/CsvLibService.class
+lib/target/classes/service/impl/AbstarctLiBService.class
+lib/target/classes/dao/entity/TextLib.class
+lib/target/classes/dao/entity/CsvLib.class
+lib/target/classes/dao/entity/AbstactLib.class
+lib/src/test/java/lib_v2/lib_v2/AppTest.java

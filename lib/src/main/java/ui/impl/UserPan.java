@@ -7,22 +7,21 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dao.entity.AbstactLib;
 import service.impl.AbstarctLiBService;
-import ui.api.IShower;
+import ui.api.ICommandExecutor;
 
 public class UserPan {
-	private Map<Pattern, IShower> mapCommand = new HashMap();
+	private Map<Pattern, ICommandExecutor> mapCommand = new HashMap();
 
 	public UserPan() {
 		Pattern p1 = Pattern.compile("FIND \\[author=<[^>]*>\\] \\[name=<[^>]*>\\]");
-		mapCommand.put(p1, new ShowerResultFind());
+		mapCommand.put(p1, new FindCommand());
 
 		Pattern p2 = Pattern.compile("ORDER id=<[^>]+> abonent=<[^>]+>");
-		mapCommand.put(p2, new ShowerResultOrder());
+		mapCommand.put(p2, new OrderCommand());
 
 		Pattern p3 = Pattern.compile("RETURN id=<[^>]+>");
-		mapCommand.put(p3, new ShowerResultReturn());
+		mapCommand.put(p3, new ReturnCommand());
 	}
 
 	public void start(List<AbstarctLiBService> libServices) {
@@ -35,14 +34,14 @@ public class UserPan {
 			if (command.equals("EXIT"))
 				return;
 
-			for (Map.Entry<Pattern, IShower> entry : mapCommand.entrySet()) {
+			for (Map.Entry<Pattern, ICommandExecutor> entry : mapCommand.entrySet()) {
 
 				Pattern p = entry.getKey();
 				Matcher m = p.matcher(command);
 
 				if (m.lookingAt()) {
-					IShower shower = entry.getValue();
-					shower.show(libServices, command);
+					ICommandExecutor executor = entry.getValue();
+					executor.execute(libServices, command);
 					continue outer;
 				}
 

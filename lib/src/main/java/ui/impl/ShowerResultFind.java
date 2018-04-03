@@ -3,20 +3,11 @@ package ui.impl;
 import java.util.List;
 
 import dao.entity.Book;
-import dao.entity.AbstactLib;
-import service.impl.AbstarctLiBService;
-import service.impl.Find;
-import ui.api.IShower;
 
-public class ShowerResultFind implements IShower {
+public class ShowerResultFind {
 
-	public void show(List<AbstarctLiBService> libServices, String command) {
-		Find find = new Find();
-		List<Book> foundBooks = find.execute(libServices, command);
-		showResult(foundBooks);
-	}
 
-	private void showResult(List<Book> foundBooks) {
+	public static void showResult(List<Book> foundBooks) {
 		if (foundBooks.size() == 0) {
 			System.out.println("NOTFOUND");
 			return;
