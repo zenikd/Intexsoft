@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.entity.Book;
-import dao.entity.Lib;
+import dao.entity.AbstactLib;
 
 public class GeterBooksByParams {
 	public List<Book> find(List<AbstarctLiBService> libServices, ChekerBooksParams cheker) {
 		List<Book> foundBook = new ArrayList();
 		for (AbstarctLiBService libService : libServices) {
-			List<Lib> libs = libService.getLibs();
+			List<AbstactLib> libs = libService.getLibs();
 			
-			for (Lib lib : libs) {
+			for (AbstactLib lib : libs) {
 				List<Book> notCheckedBooks = new ArrayList();
 
 				try {

@@ -8,11 +8,11 @@ import java.util.Properties;
 
 import dao.api.IGeterBooks;
 import dao.entity.Book;
-import dao.entity.Lib;
+import dao.entity.AbstactLib;
 
 public class TextGeterBooks implements IGeterBooks {
 
-	public List<Book> getBooks(Lib lib) throws IOException {
+	public List<Book> getBooks(AbstactLib lib) throws IOException {
 		List<String> directories = lib.getDirectories();
 
 		FileInputStream fileInputStream;

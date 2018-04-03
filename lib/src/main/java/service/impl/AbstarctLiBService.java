@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.api.IGeterBooks;
-import dao.entity.Lib;
+import dao.entity.AbstactLib;
 
 public abstract class AbstarctLiBService {
-	List<Lib> libs = new ArrayList();	
+	List<AbstactLib> libs = new ArrayList();	
 	
-	public void addLib(Lib lib) {
+	public void addLib(AbstactLib lib) {
 		libs.add(lib);		
 	}
 
-	public void removeLib(Lib lib) {
+	public void removeLib(AbstactLib lib) {
 		libs.remove(lib);
 		
 	}
 
-	public List<Lib> getLibs() {
+	public List<AbstactLib> getLibs() {
 		return libs;
 	}
 

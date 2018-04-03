@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dao.entity.Book;
-import dao.entity.Lib;
+import dao.entity.AbstactLib;
 import service.results.ReturnResult;
 
 public class Return {

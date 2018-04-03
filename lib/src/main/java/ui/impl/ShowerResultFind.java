@@ -3,7 +3,7 @@ package ui.impl;
 import java.util.List;
 
 import dao.entity.Book;
-import dao.entity.Lib;
+import dao.entity.AbstactLib;
 import service.impl.AbstarctLiBService;
 import service.impl.Find;
 import ui.api.IShower;

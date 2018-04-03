@@ -1,11 +1,10 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.entity.AbstactLib;
 import dao.entity.Book;
-import dao.entity.Lib;
-import dao.impl.CsvGeterBooks;
-import dao.impl.TextGeterBooks;
+import dao.entity.CsvLib;
+import dao.entity.TextLib;
 import service.impl.AbstarctLiBService;
 import service.impl.CsvLibService;
 import service.impl.TextLibService;
@@ -21,7 +20,7 @@ public class CentralLibrary {
 
 		AbstarctLiBService textLibService = new TextLibService();
 
-		Lib lib = new Lib();
+		AbstactLib lib = new CsvLib();
 		List<String> directories = new ArrayList();
 		directories.add("D:\\Central_Library\\lib1\\text.csv");
 		lib.setDirectories(directories);
@@ -29,7 +28,7 @@ public class CentralLibrary {
 		csvLibService.addLib(lib);
 		libServices.add(csvLibService);
 
-		Lib lib2 = new Lib();
+		AbstactLib lib2 = new TextLib();
 		List<String> directories2 = new ArrayList();
 		directories2.add("D:\\Central_Library\\lib2\\book1.properties");
 		directories2.add("D:\\Central_Library\\lib2\\book2.properties");

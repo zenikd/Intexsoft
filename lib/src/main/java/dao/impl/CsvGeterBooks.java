@@ -10,11 +10,11 @@ import com.opencsv.CSVReader;
 
 import dao.api.IGeterBooks;
 import dao.entity.Book;
-import dao.entity.Lib;
+import dao.entity.AbstactLib;
 
 public class CsvGeterBooks implements IGeterBooks {
 
-	public List<Book> getBooks(Lib lib) throws IOException {
+	public List<Book> getBooks(AbstactLib lib) throws IOException {
 		String directory = lib.getDirectories().get(0);
 
 		CSVReader reader;

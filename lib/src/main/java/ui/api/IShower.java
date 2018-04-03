@@ -2,7 +2,7 @@ package ui.api;
 
 import java.util.List;
 
-import dao.entity.Lib;
+import dao.entity.AbstactLib;
 import service.impl.AbstarctLiBService;
 
 public interface IShower {
