@@ -2,46 +2,43 @@ package service.impl;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dao.entity.Book;
-import dao.entity.AbstactLib;
+import dao.api.IBookDao;
+import dao.entity.AbstractBook;
+import dao.impl.BookDaoImpl;
 import service.results.OrderResult;
 
 public class Order {
 	private String id;
 	private String issuedto;
-	private List<Book> books;
+	private List<AbstractBook> books;
 
-	public OrderResult execute(List<AbstarctLiBService> libServices, String command) throws IOException  {
+	public OrderResult execute(List<AbstarctLiBService> libServices, String command) throws IOException {
 		setParams(command);
 
-		GeterBooksByParams geterBooksByParams = new GeterBooksByParams();
+		BookDaoImpl bookDao = new BookDaoImpl();
 
-		List<Book> foundBooks = geterBooksByParams.find(libServices, new ChekerBooksParams() {
+		List<AbstractBookService> bookServices = bookDao.getBookById(id, libServices);
 
-			@Override
-			public void check(List<Book> findBooks, List<Book> notChekedBooks) {
-
-				for (Book book : notChekedBooks) {
-
-					if (book.getIndex().equals(id)) {
-						findBooks.add(book);
-
-					}
-				}
-			}
-		});
-
-		Book foundBook;
+		List<AbstractBook> foundBooks = new ArrayList();
+		
+		for(AbstractBookService service: bookServices) {
+			foundBooks.add(service.getBooks().get(0));
+		}
+		
+		AbstractBook foundBook;
 
 		OrderResult orderResult = new OrderResult();
 		try {
+
 			foundBook = foundBooks.get(0);
+
 		} catch (Exception e) {
 			orderResult.setFound(false);
 			return orderResult;
@@ -59,17 +56,17 @@ public class Order {
 
 			foundBook.setIssued(data_s);
 			foundBook.setIssuedto(issuedto);
+			
 		} else {
 			orderResult.setBookRented(true);
 
 			orderResult.setIssued(foundBook.getIssued());
 			orderResult.setIssuedto(foundBook.getIssuedto());
 
+			return orderResult;
 		}
 
-		
-		foundBook.update();
-		
+		// foundBook.update();
 
 		return orderResult;
 
@@ -90,6 +87,16 @@ public class Order {
 		m2.find();
 		issuedto = command.substring(m1.end() + 10, m2.end() - 1);
 
+	}
+	
+	private void bookUpdate(List<AbstractBookService> bookServices) {
+		for(AbstractBookService service: bookServices) {
+			IBookDao bookDao = service.getBookDao();			
+			for(AbstractBook book: service.getBooks()) {
+				bookDao.up
+			}
+		}
+		
 	}
 
 }

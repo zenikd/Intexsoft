@@ -1,40 +1,32 @@
 package service.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dao.entity.Book;
-import dao.entity.AbstactLib;
+import dao.entity.AbstractBook;
+import dao.impl.BookDaoImpl;
 import service.results.ReturnResult;
 
 public class Return {
-	private List<Book> books;
-	private String id;
 
 	public ReturnResult execute(List<AbstarctLiBService> libServices, String command) throws IOException {
-		setParams(command);
+		String id = getId(command);
 
-		Book foundBook;
+		BookDaoImpl bookDao = new BookDaoImpl();
 
-		GeterBooksByParams geterBooksByParams = new GeterBooksByParams();
+		List<AbstractBookService> bookServices = bookDao.getBookById(id, libServices);
 
-		List<Book> foundBooks = geterBooksByParams.find(libServices, new ChekerBooksParams() {
-
-			@Override
-			public void check(List<Book> findBooks, List<Book> notChekedBooks) {
-
-				for (Book book : notChekedBooks) {
-
-					if (book.getIndex().equals(id)) {
-						findBooks.add(book);
-
-					}
-				}
-			}
-		});
+		List<AbstractBook> foundBooks = new ArrayList();
+		
+		for(AbstractBookService service: bookServices) {
+			foundBooks.add(service.getBooks().get(0));
+		}
+		
+		AbstractBook foundBook;
 
 		ReturnResult returnResult = new ReturnResult();
 		try {
@@ -64,15 +56,14 @@ public class Return {
 
 	}
 
-	private void setParams(String command) {
+	private String getId(String command) {
 		Scanner in = new Scanner(System.in);
 
 		Pattern p1 = Pattern.compile("RETURN id=<[^>]+>");
 		Matcher m1 = p1.matcher(command);
 
 		m1.find();
-		id = command.substring(11, m1.end() - 1);
-		System.out.println(id);
+		return command.substring(11, m1.end() - 1);
 
 	}
 

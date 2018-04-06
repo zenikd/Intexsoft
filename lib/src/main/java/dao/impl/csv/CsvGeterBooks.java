@@ -1,4 +1,4 @@
-package dao.impl;
+package dao.impl.csv;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,20 +8,21 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
-import dao.api.IGeterBooks;
-import dao.entity.Book;
-import dao.entity.AbstactLib;
+import dao.entity.AbstractBook;
+import dao.entity.AbstractLib;
+import dao.entity.CsvBook;
+import dao.entity.CsvLib;
 
-public class CsvGeterBooks implements IGeterBooks {
+public class CsvGeterBooks {
 
-	public List<Book> getBooks(AbstactLib lib) throws IOException {
-		String directory = lib.getDirectories().get(0);
+	public static List<AbstractBook> getBooks(AbstractLib lib) throws IOException {
+		String directory = ((CsvLib) lib).getDirectory();
 
 		CSVReader reader;
 
 		reader = new CSVReader(new FileReader(directory), ',');
-		
-		List<Book> books = new ArrayList();
+
+		List<AbstractBook> books = new ArrayList();
 
 		List<String[]> records;
 
@@ -34,22 +35,20 @@ public class CsvGeterBooks implements IGeterBooks {
 		for (Integer i = 0; i < records.size(); i++) {
 			String[] record = records.get(i);
 
-			Book book = new Book();
+			CsvBook book = new CsvBook();
 			book.setIndex(record[0]);
 			book.setAuthor(record[1]);
 			book.setNameBook(record[2]);
 			book.setIssued(record[3]);
 			book.setIssuedto(record[4]);
-			book.setLibName(lib.getName());
-			book.setNumberString(i.toString());
-			book.setUpdater(new CsvUpdater(directory));
-
+			book.setLib(lib);
+			book.setNumberString(i.toString());			
 			books.add(book);
 
 		}
 
 		reader.close();
-		
+
 		return books;
 
 	}

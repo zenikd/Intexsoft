@@ -3,26 +3,26 @@ package service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.api.IGeterBooks;
-import dao.entity.AbstactLib;
+import dao.api.IBookDao;
+import dao.entity.AbstractLib;
 
 public abstract class AbstarctLiBService {
-	List<AbstactLib> libs = new ArrayList();	
-	
-	public void addLib(AbstactLib lib) {
-		libs.add(lib);		
+	List<AbstractLib> libs = new ArrayList();
+
+	public void addLib(AbstractLib lib) {
+		libs.add(lib);
 	}
 
-	public void removeLib(AbstactLib lib) {
+	public void removeLib(AbstractLib lib) {
 		libs.remove(lib);
-		
+
 	}
 
-	public List<AbstactLib> getLibs() {
+	public List<AbstractLib> getLibs() {
 		return libs;
 	}
 
-	public abstract void setGeterBooks(IGeterBooks geter);
+	public abstract IBookDao getBookDao();
 
-	public abstract IGeterBooks getGeterBooks();
+	public abstract void setBookDao(IBookDao bookDao);
 }

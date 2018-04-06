@@ -3,7 +3,7 @@ package service.impl;
 import dao.api.IBookDao;
 import dao.impl.csv.CsvBookDaoImpl;
 
-public class CsvLibService extends AbstarctLiBService {
+public class CsvBookService extends AbstractBookService{
 	private IBookDao bookDao = new CsvBookDaoImpl();
 
 	public IBookDao getBookDao() {
@@ -13,5 +13,4 @@ public class CsvLibService extends AbstarctLiBService {
 	public void setBookDao(IBookDao bookDao) {
 		this.bookDao = bookDao;
 	}
-
 }

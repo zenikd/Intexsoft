@@ -1,18 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.entity.AbstactLib;
-import dao.entity.Book;
+import dao.entity.AbstractLib;
+import dao.entity.AbstractBook;
 import dao.entity.CsvLib;
 import dao.entity.TextLib;
 import service.impl.AbstarctLiBService;
 import service.impl.CsvLibService;
+import service.impl.DbLibService;
 import service.impl.TextLibService;
 import ui.impl.UserPan;
 
 public class CentralLibrary {
 	List<AbstarctLiBService> libServices = new ArrayList();
-	List<Book> books = new ArrayList();
+	List<AbstractBook> books = new ArrayList();
 
 	public CentralLibrary() {
 
@@ -20,15 +21,13 @@ public class CentralLibrary {
 
 		AbstarctLiBService textLibService = new TextLibService();
 
-		AbstactLib lib = new CsvLib();
-		List<String> directories = new ArrayList();
-		directories.add("D:\\Central_Library\\lib1\\text.csv");
-		lib.setDirectories(directories);
+		CsvLib lib = new CsvLib();		
+		lib.setDirectory("D:\\Central_Library\\lib1\\text.csv");
 		lib.setName("Lib 1");
 		csvLibService.addLib(lib);
 		libServices.add(csvLibService);
 
-		AbstactLib lib2 = new TextLib();
+		TextLib lib2 = new TextLib();
 		List<String> directories2 = new ArrayList();
 		directories2.add("D:\\Central_Library\\lib2\\book1.properties");
 		directories2.add("D:\\Central_Library\\lib2\\book2.properties");
@@ -36,6 +35,9 @@ public class CentralLibrary {
 		lib2.setName("Lib 2");
 		textLibService.addLib(lib2);
 		libServices.add(textLibService);
+		
+		DbLibService lib3 = new DbLibService();
+		libServices.add(lib3);
 	}
 
 	public void connect() {

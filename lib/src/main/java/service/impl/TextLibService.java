@@ -1,19 +1,17 @@
 package service.impl;
 
-import dao.api.IGeterBooks;
-import dao.impl.TextGeterBooks;
+import dao.api.IBookDao;
+import dao.impl.text.TextBookDaoImpl;
 
 public class TextLibService extends AbstarctLiBService {
-	IGeterBooks geterBooks = new TextGeterBooks();
+	private IBookDao bookDao = new TextBookDaoImpl();
 
-	@Override
-	public void setGeterBooks(IGeterBooks geter) {
-		geterBooks = geter;
+	public IBookDao getBookDao() {
+		return bookDao;
 	}
 
-	@Override
-	public IGeterBooks getGeterBooks() {
-		return geterBooks;
+	public void setBookDao(IBookDao bookDao) {
+		this.bookDao = bookDao;
 	}
 
 }

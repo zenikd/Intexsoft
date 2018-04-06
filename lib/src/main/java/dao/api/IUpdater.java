@@ -2,8 +2,8 @@ package dao.api;
 
 import java.io.IOException;
 
-import dao.entity.Book;
+import dao.entity.AbstractBook;
 
 public interface IUpdater {
-	void update(Book book) throws IOException;
+	void update(AbstractBook book) throws IOException;
 }

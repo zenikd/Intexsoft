@@ -4,14 +4,13 @@ import java.io.IOException;
 
 import dao.api.IUpdater;
 
-public class Book {
+public class AbstractBook {
 	private String index;
 	private String author;
 	private String nameBook;
 	private String issued;
-	private String issuedto;
-	private String numberString;
-	private String libName;
+	private String issuedto;	
+	private AbstractLib lib;
 	private IUpdater updater;
 
 	public String getIndex() {
@@ -44,14 +43,14 @@ public class Book {
 
 	public void setNameBook(String nameBook) {
 		this.nameBook = nameBook;
+	}	
+
+	public AbstractLib getLib() {
+		return lib;
 	}
 
-	public String getLibName() {
-		return libName;
-	}
-
-	public void setLibName(String libName) {
-		this.libName = libName;
+	public void setLib(AbstractLib lib) {
+		this.lib = lib;
 	}
 
 	public String getIssued() {
@@ -69,21 +68,12 @@ public class Book {
 	public void setIssuedto(String issuedto) {
 		this.issuedto = issuedto;
 	}
-
-	public String getNumberString() {
-		return numberString;
-	}
-
-	public void setNumberString(String numberString) {
-		this.numberString = numberString;
-	}
-
-
-
+	
+	@Override
 	public String toString() {
 
-		return String.format("[Ind=%s, Author=%s, NameBook=%s, Issued=%s, Issuedto=%s, Lib=%s]", index, author,
-				nameBook, issued, issuedto, libName);
+		return String.format("[Ind=%s, Author=%s, NameBook=%s, Issued=%s, Issuedto=%s]", index, author,
+				nameBook, issued, issuedto);
 	}
 
 	public void update() throws IOException {

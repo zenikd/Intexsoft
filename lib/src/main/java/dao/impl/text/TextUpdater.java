@@ -1,28 +1,28 @@
-package dao.impl;
+package dao.impl.text;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import dao.api.IUpdater;
-import dao.entity.Book;
+import dao.entity.AbstractBook;
 
-public class TextUpdater implements IUpdater {
+public class TextUpdater {
 	String directory;
+
 	public TextUpdater(String directory) {
 		this.directory = directory;
 	}
-	public void update(Book book) {
-		
+
+	public void update(AbstractBook book) {
+
 		Properties props = new Properties();
-		
+
 		props.setProperty("Index", book.getIndex());
 		props.setProperty("Author", book.getAuthor());
 		props.setProperty("Name", book.getNameBook());
 		props.setProperty("Issued", book.getIssued());
 		props.setProperty("Issuedto", book.getIssuedto());
-	
 
 		FileOutputStream out;
 		try {
@@ -46,7 +46,7 @@ public class TextUpdater implements IUpdater {
 			e.printStackTrace();
 			return;
 		}
-		
+
 	}
 
 }

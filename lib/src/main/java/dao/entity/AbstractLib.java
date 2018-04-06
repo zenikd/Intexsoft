@@ -1,9 +1,6 @@
 package dao.entity;
 
-import java.util.List;
-
-public abstract class AbstactLib {
-	private List<String> directories;
+public abstract class AbstractLib {	
 	private String name;
 	private String adress;
 	private String type;
@@ -22,15 +19,7 @@ public abstract class AbstactLib {
 
 	public void setAdress(String adress) {
 		this.adress = adress;
-	}
-
-	public List<String> getDirectories() {
-		return directories;
-	}
-
-	public void setDirectories(List<String> directories) {
-		this.directories = directories;
-	}
+	}	
 
 	public String getName() {
 		return name;

@@ -5,36 +5,18 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dao.entity.Book;
-import dao.entity.AbstactLib;
+import dao.entity.AbstractBook;
+import dao.impl.BookDaoImpl;
 
 public class Find {
 	private String author;
 	private String nameBook;
 
-	public List<Book> execute(List<AbstarctLiBService> libServices, String command) {
+	public List<AbstractBook> execute(List<AbstarctLiBService> libServices, String command) {
 		setParams(command);
 
-		GeterBooksByParams geterBooksByParams = new GeterBooksByParams();
-
-		List<Book> foundBooks = geterBooksByParams.find(libServices, new ChekerBooksParams() {
-
-			@Override
-			public void check(List<Book> findBooks, List<Book> notChekedBooks) {
-
-				Pattern searchAuthor = Pattern.compile(author);
-				Pattern serachNameBook = Pattern.compile(nameBook);
-
-				for (Book book : notChekedBooks) {
-					Matcher m1 = searchAuthor.matcher(book.getAuthor());
-					Matcher m2 = serachNameBook.matcher(book.getNameBook());
-
-					if (m1.lookingAt() && m2.lookingAt()) {
-						findBooks.add(book);
-					}
-				}
-			}
-		});
+		BookDaoImpl bookDaoImpl = new BookDaoImpl();
+		List<AbstractBook> foundBooks = bookDaoImpl.findCommand(author, nameBook, libServices);
 
 		return foundBooks;
 	}

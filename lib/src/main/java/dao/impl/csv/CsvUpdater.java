@@ -1,4 +1,4 @@
-package dao.impl;
+package dao.impl.csv;
 
 import java.io.File;
 import java.io.FileReader;
@@ -9,34 +9,38 @@ import java.util.List;
 import com.opencsv.CSVReader;
 
 import dao.api.IUpdater;
-import dao.entity.Book;
+import dao.entity.AbstractBook;
+import dao.entity.CsvBook;
 
-public class CsvUpdater implements IUpdater {
+public class CsvUpdater {
 	String directory;
 
 	public CsvUpdater(String directory) {
 		this.directory = directory;
 	}
 
-	public void update(Book book) throws IOException {
+	public void update(AbstractBook book) throws IOException {
 		CSVReader reader;
+
+		CsvBook csvBook = (CsvBook) book;
 
 		reader = new CSVReader(new FileReader(directory), ',');
 
 		List<String[]> records;
 
 		records = reader.readAll();
-		String id = book.getIndex();
-		String author = book.getAuthor();
-		String bookName = book.getNameBook();
-		String issued = book.getIssued();
-		String issuedto = book.getIssuedto();
+		String id = csvBook.getIndex();
+		String author = csvBook.getAuthor();
+		String bookName = csvBook.getNameBook();
+		String issued = csvBook.getIssued();
+		String issuedto = csvBook.getIssuedto();
 
 		String[] bookParam = { id, author, bookName, issued, issuedto };
 
-		String[] lastString = records.get(Integer.parseInt(book.getNumberString()));
-		//подменяю, потому что не могу сделать remove, при remove в файле собется позици всех строк, а они у нас фиксированы для каждой книги
-		records.set(Integer.parseInt(book.getNumberString()), bookParam);
+		String[] lastString = records.get(Integer.parseInt(csvBook.getNumberString()));
+		// подменяю, потому что не могу сделать remove, при remove в файле собется
+		// позици всех строк, а они у нас фиксированы для каждой книги
+		records.set(Integer.parseInt(csvBook.getNumberString()), bookParam);
 
 		StringBuilder builder = new StringBuilder();
 
