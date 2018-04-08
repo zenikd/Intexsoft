@@ -3,7 +3,7 @@ package service.impl;
 import dao.api.IBookDao;
 import dao.impl.text.TextBookDaoImpl;
 
-public class TextLibService extends AbstarctLiBService {
+public class TextLibService extends AbstractLiBService {
 	private IBookDao bookDao = new TextBookDaoImpl();
 
 	public IBookDao getBookDao() {

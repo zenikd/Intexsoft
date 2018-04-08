@@ -2,8 +2,8 @@ package ui.api;
 
 import java.util.List;
 
-import service.impl.AbstarctLiBService;
+import service.impl.AbstractLiBService;
 
 public interface ICommandExecutor {
-	public void  execute(List<AbstarctLiBService> libServices, String command);
+	public void  execute(List<AbstractLiBService> libServices, String command);
 }

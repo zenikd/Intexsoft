@@ -9,10 +9,10 @@ import dao.entity.AbstractBook;
 import dao.impl.BookDaoImpl;
 
 public class Find {
-	private String author;
-	private String nameBook;
+	private static String author;
+	private static String nameBook;
 
-	public List<AbstractBook> execute(List<AbstarctLiBService> libServices, String command) {
+	public static  List<AbstractBook> execute(List<AbstractLiBService> libServices, String command) {
 		setParams(command);
 
 		BookDaoImpl bookDaoImpl = new BookDaoImpl();
@@ -21,7 +21,7 @@ public class Find {
 		return foundBooks;
 	}
 
-	private void setParams(String command) {
+	private static void setParams(String command) {
 		Scanner in = new Scanner(System.in);
 
 		Pattern p1 = Pattern.compile("FIND \\[author=<[^>]*>\\]");

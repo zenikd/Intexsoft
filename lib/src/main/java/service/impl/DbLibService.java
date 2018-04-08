@@ -3,7 +3,7 @@ package service.impl;
 import dao.api.IBookDao;
 import dao.impl.db.DbBookDaoImpl;
 
-public class DbLibService extends AbstarctLiBService {
+public class DbLibService extends AbstractLiBService {
 	private IBookDao bookDao = new DbBookDaoImpl();
 
 	public IBookDao getBookDao() {

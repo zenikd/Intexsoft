@@ -9,17 +9,16 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dao.api.IBookDao;
 import dao.entity.AbstractBook;
 import dao.impl.BookDaoImpl;
 import service.results.OrderResult;
 
 public class Order {
-	private String id;
-	private String issuedto;
-	private List<AbstractBook> books;
+	private static String id;
+	private static String issuedto;
+	private static List<AbstractBook> books;
 
-	public OrderResult execute(List<AbstarctLiBService> libServices, String command) throws IOException {
+	public static OrderResult execute(List<AbstractLiBService> libServices, String command) throws IOException {
 		setParams(command);
 
 		BookDaoImpl bookDao = new BookDaoImpl();
@@ -27,11 +26,13 @@ public class Order {
 		List<AbstractBookService> bookServices = bookDao.getBookById(id, libServices);
 
 		List<AbstractBook> foundBooks = new ArrayList();
-		
-		for(AbstractBookService service: bookServices) {
-			foundBooks.add(service.getBooks().get(0));
+
+		for (AbstractBookService service : bookServices) {
+			for (AbstractBook book : service.getBooks()) {
+				foundBooks.add(book);
+			}
 		}
-		
+
 		AbstractBook foundBook;
 
 		OrderResult orderResult = new OrderResult();
@@ -45,7 +46,7 @@ public class Order {
 		}
 
 		orderResult.setFound(true);
-		if (foundBook.getIssued().equals("")) {
+		if (foundBook.getIssued() == null || foundBook.getIssued().equals("")) {
 			orderResult.setBookRented(false);
 
 			orderResult.setIssuedto(issuedto);
@@ -56,7 +57,7 @@ public class Order {
 
 			foundBook.setIssued(data_s);
 			foundBook.setIssuedto(issuedto);
-			
+
 		} else {
 			orderResult.setBookRented(true);
 
@@ -66,13 +67,13 @@ public class Order {
 			return orderResult;
 		}
 
-		// foundBook.update();
+		bookDao.update(bookServices);
 
 		return orderResult;
 
 	}
 
-	private void setParams(String command) {
+	private static void setParams(String command) {
 		Scanner in = new Scanner(System.in);
 
 		Pattern p1 = Pattern.compile("ORDER id=<[^>]+>");
@@ -87,16 +88,6 @@ public class Order {
 		m2.find();
 		issuedto = command.substring(m1.end() + 10, m2.end() - 1);
 
-	}
-	
-	private void bookUpdate(List<AbstractBookService> bookServices) {
-		for(AbstractBookService service: bookServices) {
-			IBookDao bookDao = service.getBookDao();			
-			for(AbstractBook book: service.getBooks()) {
-				bookDao.up
-			}
-		}
-		
 	}
 
 }

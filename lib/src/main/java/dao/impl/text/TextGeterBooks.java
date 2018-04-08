@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import dao.entity.AbstractBook;
 import dao.entity.AbstractLib;
+import dao.entity.TextBook;
 import dao.entity.TextLib;
 
 public class TextGeterBooks {
@@ -20,18 +21,20 @@ public class TextGeterBooks {
 		List<AbstractBook> books = new ArrayList();
 
 		for (String directory : directories) {
+
 			Properties prop = new Properties();
 
 			fileInputStream = new FileInputStream(directory);
 			prop.load(fileInputStream);
 
-			AbstractBook book = new AbstractBook();
+			TextBook book = new TextBook();
 
 			book.setIndex(prop.getProperty("Index"));
 			book.setAuthor(prop.getProperty("Author"));
 			book.setNameBook(prop.getProperty("Name"));
 			book.setIssued(prop.getProperty("Issued"));
 			book.setIssuedto(prop.getProperty("Issuedto"));
+			book.setDirectory(directory);
 			book.setLib(lib);
 
 			books.add(book);

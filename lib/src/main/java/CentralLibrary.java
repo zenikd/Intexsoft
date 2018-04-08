@@ -5,21 +5,21 @@ import dao.entity.AbstractLib;
 import dao.entity.AbstractBook;
 import dao.entity.CsvLib;
 import dao.entity.TextLib;
-import service.impl.AbstarctLiBService;
+import service.impl.AbstractLiBService;
 import service.impl.CsvLibService;
 import service.impl.DbLibService;
 import service.impl.TextLibService;
 import ui.impl.UserPan;
 
 public class CentralLibrary {
-	List<AbstarctLiBService> libServices = new ArrayList();
+	List<AbstractLiBService> libServices = new ArrayList();
 	List<AbstractBook> books = new ArrayList();
 
 	public CentralLibrary() {
 
-		AbstarctLiBService csvLibService = new CsvLibService();
+		AbstractLiBService csvLibService = new CsvLibService();
 
-		AbstarctLiBService textLibService = new TextLibService();
+		AbstractLiBService textLibService = new TextLibService();
 
 		CsvLib lib = new CsvLib();		
 		lib.setDirectory("D:\\Central_Library\\lib1\\text.csv");

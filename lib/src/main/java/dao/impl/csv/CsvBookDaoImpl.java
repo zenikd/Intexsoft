@@ -9,12 +9,12 @@ import java.util.regex.Pattern;
 import dao.api.IBookDao;
 import dao.entity.AbstractBook;
 import dao.entity.AbstractLib;
-import service.impl.AbstarctLiBService;
+import service.impl.AbstractLiBService;
 import service.impl.AbstractBookService;
 import service.impl.CsvBookService;
 
 public class CsvBookDaoImpl implements IBookDao {
-	public void getBookById(String id, AbstarctLiBService libService, List<AbstractBookService> bookServices)  {
+	public void getBookById(String id, AbstractLiBService libService, List<AbstractBookService> bookServices)  {
 
 		List<AbstractLib> libs = libService.getLibs();
 		
@@ -43,7 +43,7 @@ public class CsvBookDaoImpl implements IBookDao {
 
 	}
 
-	public void findCommand(String author, String nameBook, AbstarctLiBService libService,	List<AbstractBook> foundBooks) {
+	public void findCommand(String author, String nameBook, AbstractLiBService libService,	List<AbstractBook> foundBooks) {
 		List<AbstractLib> libs = libService.getLibs();
 
 		for (AbstractLib lib : libs) {
@@ -75,8 +75,7 @@ public class CsvBookDaoImpl implements IBookDao {
 
 	@Override
 	public void update(AbstractBook book) throws IOException {
-		CsvUpdater.update(book);
-		
+		CsvUpdater.update(book);		
 	}
 
 }

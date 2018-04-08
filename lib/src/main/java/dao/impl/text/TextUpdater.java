@@ -6,16 +6,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 import dao.entity.AbstractBook;
+import dao.entity.TextBook;
 
 public class TextUpdater {
-	String directory;
 
-	public TextUpdater(String directory) {
-		this.directory = directory;
-	}
+	public static void update(AbstractBook book) {
 
-	public void update(AbstractBook book) {
-
+		String directory = ((TextBook) book).getDirectory();
 		Properties props = new Properties();
 
 		props.setProperty("Index", book.getIndex());
@@ -25,6 +22,7 @@ public class TextUpdater {
 		props.setProperty("Issuedto", book.getIssuedto());
 
 		FileOutputStream out;
+
 		try {
 			out = new FileOutputStream(directory);
 		} catch (FileNotFoundException e1) {

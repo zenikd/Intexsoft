@@ -13,16 +13,13 @@ import dao.entity.AbstractBook;
 import dao.entity.CsvBook;
 
 public class CsvUpdater {
-	String directory;
 
-	public CsvUpdater(String directory) {
-		this.directory = directory;
-	}
-
-	public void update(AbstractBook book) throws IOException {
+	public static void update(AbstractBook book) throws IOException {
 		CSVReader reader;
 
 		CsvBook csvBook = (CsvBook) book;
+		
+		String directory = csvBook.getDirectory();
 
 		reader = new CSVReader(new FileReader(directory), ',');
 

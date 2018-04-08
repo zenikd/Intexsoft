@@ -11,15 +11,15 @@ import dao.entity.AbstractBook;
 import dao.entity.AbstractLib;
 import dao.impl.csv.CsvGeterBooks;
 import dao.impl.csv.CsvUpdater;
-import service.impl.AbstarctLiBService;
+import service.impl.AbstractLiBService;
 import service.impl.AbstractBookService;
 import service.impl.TextBookService;
 
 public class TextBookDaoImpl implements IBookDao {
-	public void getBookById(String id, AbstarctLiBService libService, List<AbstractBookService> bookServices)  {
+	public void getBookById(String id, AbstractLiBService libService, List<AbstractBookService> bookServices) {
 
 		List<AbstractLib> libs = libService.getLibs();
-		
+
 		TextBookService textBookService = new TextBookService();
 
 		for (AbstractLib lib : libs) {
@@ -43,7 +43,7 @@ public class TextBookDaoImpl implements IBookDao {
 		bookServices.add(textBookService);
 	}
 
-	public void findCommand(String author, String nameBook, AbstarctLiBService libService,
+	public void findCommand(String author, String nameBook, AbstractLiBService libService,
 			List<AbstractBook> foundBooks) {
 		List<AbstractLib> libs = libService.getLibs();
 
@@ -73,12 +73,12 @@ public class TextBookDaoImpl implements IBookDao {
 		}
 
 	}
-	
+
 	@Override
 	public void update(AbstractBook book) throws IOException {
-		TextUpdater textUpdater = new TextUpdater(directory);
+
 		TextUpdater.update(book);
-		
+
 	}
 
 }

@@ -13,7 +13,7 @@ import service.results.ReturnResult;
 
 public class Return {
 
-	public ReturnResult execute(List<AbstarctLiBService> libServices, String command) throws IOException {
+	public static ReturnResult execute(List<AbstractLiBService> libServices, String command) throws IOException {
 		String id = getId(command);
 
 		BookDaoImpl bookDao = new BookDaoImpl();
@@ -21,11 +21,13 @@ public class Return {
 		List<AbstractBookService> bookServices = bookDao.getBookById(id, libServices);
 
 		List<AbstractBook> foundBooks = new ArrayList();
-		
-		for(AbstractBookService service: bookServices) {
-			foundBooks.add(service.getBooks().get(0));
+
+		for (AbstractBookService service : bookServices) {
+			for (AbstractBook book : service.getBooks()) {
+				foundBooks.add(book);
+			}
 		}
-		
+
 		AbstractBook foundBook;
 
 		ReturnResult returnResult = new ReturnResult();
@@ -38,7 +40,7 @@ public class Return {
 
 		returnResult.setFound(true);
 
-		if (foundBook.getIssued().equals("")) {
+		if (foundBook.getIssued() == null || foundBook.getIssued().equals("")) {
 
 			return returnResult;
 		}
@@ -50,13 +52,13 @@ public class Return {
 		foundBook.setIssued("");
 		foundBook.setIssuedto("");
 
-		foundBook.update();
+		bookDao.update(bookServices);
 
 		return returnResult;
 
 	}
 
-	private String getId(String command) {
+	private static String getId(String command) {
 		Scanner in = new Scanner(System.in);
 
 		Pattern p1 = Pattern.compile("RETURN id=<[^>]+>");

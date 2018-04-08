@@ -42,7 +42,8 @@ public class CsvGeterBooks {
 			book.setIssued(record[3]);
 			book.setIssuedto(record[4]);
 			book.setLib(lib);
-			book.setNumberString(i.toString());			
+			book.setNumberString(i.toString());	
+			book.setDirectory(directory);
 			books.add(book);
 
 		}
