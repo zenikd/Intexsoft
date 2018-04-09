@@ -10,6 +10,13 @@ import java.util.regex.Pattern;
 import service.impl.AbstractLiBService;
 import ui.api.ICommandExecutor;
 
+/**
+ * This class control of user action
+ * 
+ * @author admin
+ *
+ */
+
 public class UserPan {
 	private Map<Pattern, ICommandExecutor> mapCommand = new HashMap();
 
@@ -23,6 +30,12 @@ public class UserPan {
 		Pattern p3 = Pattern.compile("RETURN id=<[^>]+>");
 		mapCommand.put(p3, new ReturnCommand());
 	}
+
+	/**
+	 * 
+	 * @param libServices
+	 *            the list lib service
+	 */
 
 	public void start(List<AbstractLiBService> libServices) {
 		Scanner in = new Scanner(System.in);

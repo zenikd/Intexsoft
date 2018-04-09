@@ -2,7 +2,7 @@ package ui.impl;
 
 import service.results.OrderResult;
 
-public class ShowerResultOrder {
+public class ResultOrderUI {
 	public static void showResult(OrderResult orderResult) {
 
 		if (!orderResult.isFound()) {

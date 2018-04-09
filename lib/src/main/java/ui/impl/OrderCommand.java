@@ -14,7 +14,7 @@ public class OrderCommand implements ICommandExecutor {
 		OrderResult orderResult;
 		try {
 			orderResult = Order.execute(libServices, command);
-			ShowerResultOrder.showResult(orderResult);
+			ResultOrderUI.showResult(orderResult);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;

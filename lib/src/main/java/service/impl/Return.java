@@ -12,6 +12,16 @@ import dao.impl.BookDaoImpl;
 import service.results.ReturnResult;
 
 public class Return {
+	/**
+	 * 
+	 * @param libServices
+	 *            the list lib service
+	 * @param command
+	 *            the text of the user command
+	 * @return this order result
+	 * @throws IOException
+	 *             some update errors
+	 */
 
 	public static ReturnResult execute(List<AbstractLiBService> libServices, String command) throws IOException {
 		String id = getId(command);
@@ -49,14 +59,21 @@ public class Return {
 
 		returnResult.setIssuedto(issuedto);
 
-		foundBook.setIssued("");
-		foundBook.setIssuedto("");
+		foundBook.setIssued(null);
+		foundBook.setIssuedto(null);
 
 		bookDao.update(bookServices);
 
 		return returnResult;
 
 	}
+
+	/**
+	 * parse user command to id
+	 * 
+	 * @param command
+	 *            the text of the user command
+	 */
 
 	private static String getId(String command) {
 		Scanner in = new Scanner(System.in);

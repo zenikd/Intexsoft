@@ -11,7 +11,7 @@ public class FindCommand implements ICommandExecutor{
 
 	public void execute(List<AbstractLiBService> libServices, String command) {		
 		List<AbstractBook> foundBooks = Find.execute(libServices, command);
-		ShowerResultFind.showResult(foundBooks);
+		ResultFindUI.showResult(foundBooks);
 		
 	}
 

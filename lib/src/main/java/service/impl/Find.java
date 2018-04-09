@@ -12,7 +12,16 @@ public class Find {
 	private static String author;
 	private static String nameBook;
 
-	public static  List<AbstractBook> execute(List<AbstractLiBService> libServices, String command) {
+	/**
+	 * 
+	 * @param libServices
+	 *            the list lib service
+	 * @param command
+	 *            the text of the user command
+	 * @return this return result
+	 */
+
+	public static List<AbstractBook> execute(List<AbstractLiBService> libServices, String command) {
 		setParams(command);
 
 		BookDaoImpl bookDaoImpl = new BookDaoImpl();
@@ -20,6 +29,13 @@ public class Find {
 
 		return foundBooks;
 	}
+
+	/**
+	 * parse user command to author and nameBook
+	 * 
+	 * @param command
+	 *            the text of the user command
+	 */
 
 	private static void setParams(String command) {
 		Scanner in = new Scanner(System.in);

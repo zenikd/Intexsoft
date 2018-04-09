@@ -10,7 +10,7 @@ import dao.entity.TextBook;
 
 public class TextUpdater {
 
-	public static void update(AbstractBook book) {
+	public static void update(AbstractBook book) throws IOException {
 
 		String directory = ((TextBook) book).getDirectory();
 		Properties props = new Properties();
@@ -23,27 +23,11 @@ public class TextUpdater {
 
 		FileOutputStream out;
 
-		try {
-			out = new FileOutputStream(directory);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			return;
-		}
-		try {
-			props.store(out, null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return;
-		}
-		try {
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return;
-		}
+		out = new FileOutputStream(directory);
+
+		props.store(out, null);
+
+		out.close();
 
 	}
 

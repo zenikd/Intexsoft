@@ -1,7 +1,7 @@
 package dao.impl.db;
 
 import java.io.IOException;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +9,7 @@ import java.sql.Types;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import dao.api.IBookDao;
@@ -83,14 +84,18 @@ public class DbBookDaoImpl<ENTITY> extends AbstractDaoImpl<AbstractBook> impleme
 			public AbstractBook doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {
 
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+
 				pStmt.setString(1, book.getAuthor());
 				pStmt.setString(2, book.getNameBook());
+
 				try {
 					pStmt.setObject(3, df.parse(book.getIssued()), Types.TIMESTAMP);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (NullPointerException e) {
+					pStmt.setObject(3, null);
 				}
+
 				pStmt.setString(4, book.getIssuedto());
 				pStmt.setInt(5, Integer.parseInt(book.getIndex()));
 

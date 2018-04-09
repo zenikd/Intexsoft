@@ -2,7 +2,7 @@ package ui.impl;
 
 import service.results.ReturnResult;
 
-public class ShowerResultReturn {
+public class ResultReturnUI {
 	public static void showResult(ReturnResult returnResult) {
 
 		if (!returnResult.isFound()) {

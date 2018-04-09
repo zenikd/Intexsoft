@@ -18,6 +18,17 @@ public class Order {
 	private static String issuedto;
 	private static List<AbstractBook> books;
 
+	/**
+	 * 
+	 * @param libServices
+	 *            the list lib service
+	 * @param command
+	 *            the text of the user command
+	 * @return this return result
+	 * @throws IOException
+	 *             some update errors
+	 */
+
 	public static OrderResult execute(List<AbstractLiBService> libServices, String command) throws IOException {
 		setParams(command);
 
@@ -72,6 +83,13 @@ public class Order {
 		return orderResult;
 
 	}
+
+	/**
+	 * parse user command to id and issuedto
+	 * 
+	 * @param command
+	 *            the text of the user command
+	 */
 
 	private static void setParams(String command) {
 		Scanner in = new Scanner(System.in);

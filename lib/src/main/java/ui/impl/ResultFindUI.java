@@ -4,7 +4,7 @@ import java.util.List;
 
 import dao.entity.AbstractBook;
 
-public class ShowerResultFind {
+public class ResultFindUI {
 
 
 	public static void showResult(List<AbstractBook> foundBooks) {

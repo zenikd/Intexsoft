@@ -9,6 +9,34 @@ public class AbstractBook {
 	private String issued;
 	private String issuedto;
 	private AbstractLib lib;
+	
+	public AbstractBook(){
+		
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 *            the id or index book
+	 * @param author
+	 *            the name author
+	 * @param nameBook
+	 *            the name book
+	 * @param issued
+	 *            the date order
+	 * @param issuedto
+	 *            the name issuedto
+	 * @param lib
+	 *            the library where the book located
+	 */
+	
+	public AbstractBook(String index, String author, String nameBook, String issued, String issuedto, AbstractLib lib ){
+		this.index = index;
+		this.author = author;
+		this.nameBook = nameBook;
+		this.issued = issued;
+		this.issuedto = issuedto;
+	}
 
 	public String getIndex() {
 		return index;
