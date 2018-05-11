@@ -1,4 +1,4 @@
-package dao.impl.csv;
+package dao.impl.txt;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,25 +11,25 @@ import dao.api.IBookType;
 import dao.api.ILibType;
 import dao.entity.AbstractBook;
 import dao.entity.AbstractLib;
-import dao.type.book.CsvTypeBooks;
+import dao.type.book.TxtTypeBooks;
 
-public class CsvBookDaoImpl implements AppSpecificallyBook{
-	
-	public IBookType getById(String id, ILibType libCollection )  {		
-		
+public class TxtBookDaoImpl implements AppSpecificallyBook{
+
+	public IBookType getById(String id, ILibType libCollection) {
+
 		List<AbstractLib> libs = libCollection.getLibs();
-		
-		CsvTypeBooks csvBookCollection = new CsvTypeBooks();
+
+		TxtTypeBooks txtBookCollection = new TxtTypeBooks();
 
 		for (AbstractLib lib : libs) {
 			List<AbstractBook> notCheckedBooks = new ArrayList();
 
 			try {
-				notCheckedBooks = CsvGeterBook.getBooks(lib);
+				notCheckedBooks = TxtGeterBooks.getBooks(lib);
 
 				for (AbstractBook book : notCheckedBooks) {
 					if (book.getIndex().equals(id)) {
-						csvBookCollection.addBook(book);
+						txtBookCollection.addBook(book);
 					}
 				}
 
@@ -39,12 +39,10 @@ public class CsvBookDaoImpl implements AppSpecificallyBook{
 			}
 
 		}
-		
-		return csvBookCollection;
-
+		return txtBookCollection;
 	}
 
-	public List<AbstractBook> findCommand(String author, String nameBook, ILibType libCollection) {
+	public List<AbstractBook> findCommand(String author, String nameBook, ILibType libCollection) {		
 		List<AbstractBook> foundBooks = new ArrayList<AbstractBook>();
 		
 		List<AbstractLib> libs = libCollection.getLibs();
@@ -53,7 +51,7 @@ public class CsvBookDaoImpl implements AppSpecificallyBook{
 			List<AbstractBook> notCheckedBooks = new ArrayList();
 
 			try {
-				notCheckedBooks = CsvGeterBook.getBooks(lib);
+				notCheckedBooks = TxtGeterBooks.getBooks(lib);
 
 				Pattern searchAuthor = Pattern.compile(author);
 				Pattern serachNameBook = Pattern.compile(nameBook);
@@ -78,15 +76,16 @@ public class CsvBookDaoImpl implements AppSpecificallyBook{
 
 	}
 
-	
-	public void update(IBookType bookCollection) throws IOException {
-		for(AbstractBook abstractBook: bookCollection.getBooks()) {			
-			CsvUpdaterBook.update(abstractBook);			
-		}
-				
-	}
+	public void update(IBookType bookCollection) {
+		for(AbstractBook abstractBook:bookCollection.getBooks() )
+			try {
+				TxtUpdater.update(abstractBook);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-	
+	}
 
 	
 	

@@ -1,27 +1,39 @@
 package dao.entity;
 
-public abstract class AbstractLib {
+public class AbstractLib {
 	private String name;
 	private String address;
 	private String type;
+	private String directory;
 
-	public AbstractLib() {
-
+	public AbstractLib(String name, String directory) {
+		super();
+		this.name = name;
+		this.directory=directory;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 *            the library name
-	 * @param adress
-	 *            the library address
-	 * @param type
-	 *            the type of the library
-	 */
-	public AbstractLib(String name, String adress, String type) {
+	public String getName() {
+		return name;
+	}
+
+	public String getDirectory() {
+		return directory;
+	}
+
+	public void setDirectory(String directory) {
+		this.directory = directory;
+	}
+
+	public void setName(String name) {
 		this.name = name;
-		this.address = adress;
-		this.type = type;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getType() {
@@ -32,19 +44,4 @@ public abstract class AbstractLib {
 		this.type = type;
 	}
 
-	public String getAdress() {
-		return address;
-	}
-
-	public void setAdress(String adress) {
-		this.address = adress;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 }
